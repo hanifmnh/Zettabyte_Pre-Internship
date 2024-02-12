@@ -10,9 +10,10 @@ const book2 = {
 	discount: 10,
 };
 
-function purchaseBook(book, amountStock, amountPurchased) {
+function purchaseBook(book, amountStock, amountPurchased, creditDuration) {
 	const tax = 10;
 	let booksPurchased = 0;
+	let purchaseDetails = [];
 
 	for (let i = 0; i < amountPurchased; i++) {
 		if (i === amountStock) {
@@ -21,26 +22,33 @@ function purchaseBook(book, amountStock, amountPurchased) {
 		booksPurchased += book.price;
 	}
 
-	let discountAmount = (book.price * book.discount) / 100;
-	let priceAfterDiscount = book.price - discountAmount;
+	let discountAmount = (booksPurchased * book.discount) / 100;
+	let priceAfterDiscount = booksPurchased - discountAmount;
 	let taxAmount = (priceAfterDiscount * tax) / 100;
 	let priceFinal = priceAfterDiscount - taxAmount;
 
-	console.log(book.title);
-	console.log('Total price\t\t:', booksPurchased);
-	console.log('Amount of discount\t:', discountAmount);
-	console.log('Price after discount\t:', priceAfterDiscount);
-	console.log('Amount of tax\t\t:', taxAmount);
-	console.log('Price after tax\t\t:', priceFinal);
+	purchaseDetails.push(book.title);
+	purchaseDetails.push('Total price:', booksPurchased);
+	purchaseDetails.push('Amount of discount:', discountAmount);
+	purchaseDetails.push('Price after discount:', priceAfterDiscount);
+	purchaseDetails.push('Amount of tax:', taxAmount);
+	purchaseDetails.push('Price after tax:', priceFinal);
 
 	if (amountPurchased >= amountStock) {
-		console.log('This book is currently sold and cannot be purchased again\n');
+		purchaseDetails.push('This book is currently sold and cannot be purchased again');
 	} else {
-		console.log('This book can be purchased again\n');
+		purchaseDetails.push('This book can be purchased again');
 	}
 
-	return priceFinal;
+	// Calculate due dates for each month starting from the next month
+	const currentDate = new Date();
+	for (let i = 1; i <= creditDuration; i++) {
+		const dueDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + i, currentDate.getDate());
+		purchaseDetails.push(`Due date for month ${i}: ${dueDate.toDateString()}`);
+	}
+
+	return purchaseDetails;
 }
 
-purchaseBook(book1, 8, 8);
-purchaseBook(book2, 26, 13);
+const result = purchaseBook(book1, 200, 150, 6);
+console.log(result);

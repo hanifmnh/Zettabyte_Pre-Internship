@@ -1,26 +1,30 @@
-/*
-Title: Unique Characters
+/**
+ * write a function that returns true if there's duplicate in the array, and false otherwise.
+ * SEE EXAMPLE BELLOW!
+ * 
+ * 
+Example
+console.log(containsDuplicate([1, 2, 3, 1])); // Output: true
+console.log(containsDuplicate([1, 2, 3, 4])); // Output: false
+console.log(containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2])); // Output: true
 
-Description:
-Write a function named hasUniqueCharacters that takes a string as input and returns true if the string contains all unique characters, and false otherwise. You can assume that the string contains only lowercase alphabets (a-z).
+ * Determines if the array contains any duplicate value.
 
-Example:
-console.log(hasUniqueCharacters("abcdefg")); // Output: true
-console.log(hasUniqueCharacters("hello")); // Output: false
-*/
-
-function hasUniqueCharacters(str) {
-	const charCount = {};
-
-	for (let char of str) {
-		if (charCount[char]) {
-			return false;
+ * @param {number[]} nums - The input array of integers.
+ * @return {boolean} Returns true if the array contains any duplicate value, false otherwise.
+ */
+function containsDuplicate(nums) {
+	const numSet = new Set();
+	for (const num of nums) {
+		if (numSet.has(num)) {
+			return true;
+		} else {
+			numSet.add(num);
 		}
-		charCount[char] = 1;
 	}
-
-	return true;
+	return false;
 }
 
-console.log(hasUniqueCharacters('abcdefg'));
-console.log(hasUniqueCharacters('hello'));
+console.log(containsDuplicate([1, 2, 3, 1]));
+console.log(containsDuplicate([1, 2, 3, 4]));
+console.log(containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]));
