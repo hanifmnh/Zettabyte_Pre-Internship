@@ -13,42 +13,57 @@ const book2 = {
 function purchaseBook(book, amountStock, amountPurchased, creditDuration) {
 	const tax = 10;
 	let booksPurchased = 0;
-	let purchaseDetails = [];
 
-	for (let i = 0; i < amountPurchased; i++) {
-		if (i === amountStock) {
+	let discountAmount = (book.price * book.discount) / 100;
+	let priceAfterDiscount = book.price - discountAmount;
+
+	for (let amount = 0; amount < amountPurchased; amount++) {
+		if (amount === amountStock) {
 			break;
 		}
-		booksPurchased += book.price;
+		booksPurchased += priceAfterDiscount;
 	}
 
-	let discountAmount = (booksPurchased * book.discount) / 100;
-	let priceAfterDiscount = booksPurchased - discountAmount;
-	let taxAmount = (priceAfterDiscount * tax) / 100;
-	let priceFinal = priceAfterDiscount - taxAmount;
+	let remainingStock = amountStock - amountPurchased;
 
-	purchaseDetails.push(book.title);
-	purchaseDetails.push('Total price:', booksPurchased);
-	purchaseDetails.push('Amount of discount:', discountAmount);
-	purchaseDetails.push('Price after discount:', priceAfterDiscount);
-	purchaseDetails.push('Amount of tax:', taxAmount);
-	purchaseDetails.push('Price after tax:', priceFinal);
+	let taxAmount = (booksPurchased * tax) / 100;
+	let priceFinal = booksPurchased + taxAmount;
 
+	console.log('Title\t\t\t:', book.title);
+	console.log('Price\t\t\t:', book.price);
+	console.log('Stock\t\t\t:', amountStock);
+
+	console.log('\nDiscount\t\t:', book.discount, '%');
+	console.log('Amount of discount\t:', discountAmount);
+	console.log('Price after discount\t:', priceAfterDiscount);
+
+	console.log('\nAmount Purchased\t:', amountPurchased, 'book');
+	console.log('Total price\t\t:', booksPurchased);
+
+	console.log('\nTax\t\t\t:', tax, '%');
+	console.log('Amount of tax\t\t:', taxAmount);
+	console.log('Price after tax\t\t:', priceFinal);
+
+	console.log('\nTotal Amount of Payment\t:', priceFinal);
+
+	console.log('\nCan this book still be purchased?');
 	if (amountPurchased >= amountStock) {
-		purchaseDetails.push('This book is currently sold and cannot be purchased again');
+		console.log('No, this book is currently sold and cannot be purchased again');
 	} else {
-		purchaseDetails.push('This book can be purchased again');
+		console.log('Yes, this book can be purchased again');
 	}
+	console.log('Remaining stock\t:', remainingStock);
 
-	// Calculate due dates for each month starting from the next month
+	console.log(`\nBook credit for ${creditDuration} month details:`);
 	const currentDate = new Date();
-	for (let i = 1; i <= creditDuration; i++) {
-		const dueDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + i, currentDate.getDate());
-		purchaseDetails.push(`Due date for month ${i}: ${dueDate.toDateString()}`);
-	}
+	const monthlyPayment = priceFinal / creditDuration;
+	const paymentSchedule = Array.from({ length: creditDuration }, (_, inPaymentSchedule) => {
+		const dueDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + inPaymentSchedule + 1, currentDate.getDate());
+		return { 'Due date': dueDate.toDateString(), 'Amount of payment per month': monthlyPayment };
+	});
 
-	return purchaseDetails;
+	return paymentSchedule;
 }
 
-const result = purchaseBook(book1, 200, 150, 6);
+const result = purchaseBook(book1, 100, 5, 2);
 console.log(result);
