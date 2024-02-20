@@ -1,0 +1,24 @@
+.about {
+  background-color: #dbe2ef;
+  padding-bottom: 30px;
+}
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.description,
+.hobbies {
+  width: 40%;
+}
+
+h2 {
+  text-align: center;
+  padding: 25px;
+}
+
+p {
+  text-align: justify;
+}
