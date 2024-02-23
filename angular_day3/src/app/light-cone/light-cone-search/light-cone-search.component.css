@@ -1,0 +1,26 @@
+.content {
+  width: 100%;
+  color: #f1faee;
+}
+
+.content p {
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+.content h1 {
+  font-size: 50px;
+  color: #a8dadc;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+input[type="text"] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: none;
+  background-color: #f1faee;
+}

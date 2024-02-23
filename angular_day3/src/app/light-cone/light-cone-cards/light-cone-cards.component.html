@@ -1,0 +1,13 @@
+<div class="card-container">
+  <div *ngFor="let cone of lightCones" class="card">
+    <div class="cone-image">
+      <img [src]="cone.imageUrl" alt="Light Cone Image">
+    </div>
+    <div class="content">
+      <h3>{{ cone.name }}</h3>
+      <p><b>Rarity: </b>{{ cone.rarity }}</p>
+      <p><b>Path: </b>{{ cone.path }}</p>
+      <p><b>Description: </b>{{ cone.description }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="hero-image">
+    <img src="https://static.wikia.nocookie.net/houkai-star-rail/images/4/46/Light_Cone_Cornucopia.png"
+      alt="Light Cone">
+  </div>
+  <app-light-cone-search [lightCones]="lightCones" (filteredLightCones)="updateFilteredLightCones($event)">
+  </app-light-cone-search>
+</div>
+<app-light-cone-cards [lightCones]="filteredLightCones"></app-light-cone-cards>
