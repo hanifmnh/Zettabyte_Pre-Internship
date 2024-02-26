@@ -1,0 +1,18 @@
+<div class="container bg-white shadow w-75 my-5 px-3 py-4 rounded">
+  <h1 class="text-center mb-3">Task Doctor</h1>
+  <div class="row">
+    <div class="col">
+      <app-task-list (taskAdded)="onTaskAdded($event)"></app-task-list>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <div *ngIf="tasks.length === 0" class="d-flex justify-content-center mt-3">
+        <p>No task yet!</p>
+      </div>
+      <div *ngFor="let task of tasks" class="card mb-3 rounded-pill">
+        <app-task-item [taskItem]="task" (taskDeleted)="onTaskDeleted($event)"></app-task-item>
+      </div>
+    </div>
+  </div>
+</div>

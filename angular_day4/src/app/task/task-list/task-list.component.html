@@ -1,0 +1,6 @@
+<div class="d-flex">
+  <input type="text" class="form-control rounded-pill" [(ngModel)]="newTask" placeholder="Add Task">
+  <button class="btn btn-dark rounded-circle ms-3" (click)="addTask()" [disabled]="newTask.trim() === ''">
+    <i class="bi bi-plus-lg fs-4"></i>
+  </button>
+</div>
