@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="overflow-x-auto">
+    <div class="d-flex flex-nowrap">
+      <div *ngFor="let movie of movies" class="card my-4 mx-3" style="width: 18rem; flex: 0 0 auto;">
+        <img [src]="movie.imgUrl" class="card-img-top rounded" alt="Movie Image">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-3"><b>{{ movie.title }}</b></h5>
+          <p class="card-text mb-2"><b>Rating: </b><span class="text-warning">&starf; </span>{{ movie.rating }}</p>
+          <p class="card-text mb-2"><b>Duration: </b>{{ movie.duration }}</p>
+          <p class="card-text mb-2"><b>Release Date: </b>{{ movie.release_date }}</p>
+          <p class="card-text mb-3"><b>Genre: </b>{{ movie.genre }}</p>
+          <button (click)="addToWatchlist(movie)" [disabled]="isInWatchlist(movie)" class="btn btn-primary w-100">
+            {{ isInWatchlist(movie) ? 'Added to Watchlist' : 'Add to Watchlist' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
