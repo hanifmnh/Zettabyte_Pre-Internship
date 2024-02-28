@@ -1,0 +1,7 @@
+<div class="d-flex flex-wrap justify-content-evenly">
+  <div (click)="selectGame(game)" *ngFor="let game of gamesCard" class="card m-3 bg-black"
+    style="width: 18rem; cursor: pointer;">
+    <img [src]="game.imgUrl" class="card-img-top" [alt]="game.name">
+    <h5 class="card-title mt-2 ps-2 text-white">{{game.name}}</h5>
+  </div>
+</div>

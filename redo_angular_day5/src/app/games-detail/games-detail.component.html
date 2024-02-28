@@ -1,0 +1,17 @@
+<div *ngIf="selectedGame" class="card mt-3 bg-secondary text-white" style="width: 18rem;">
+  <button type="button" class="btn btn-dark opacity-75 position-absolute top-0 end-0" (click)="closeDetail()">
+    <i class="bi bi-x-lg text-white fw-bold"></i>
+  </button>
+  <img [src]="selectedGame.imgUrl" class="card-img-top" [alt]="selectedGame.name">
+  <div class="card-body">
+    <h5 class="card-title">{{ selectedGame.name }}</h5>
+    <p class="card-text mb-1 fw-light"><small>{{ selectedGame.description }}</small></p>
+    <p class="card-text mb-1 fw-light"><small><b>Genre:</b> {{ selectedGame.genre }}</small></p>
+    <p class="card-text mb-1 fw-light"><small><b>Release Date:</b> {{ selectedGame.release_date }}</small></p>
+    <p class="card-text mb-1 fw-light"><small><b>Publisher:</b> {{ selectedGame.publisher }}</small></p>
+    <p class="card-text mb-1 fw-light"><small><b>Price:</b> Rp {{ selectedGame.price }}</small></p>
+  </div>
+  <button type="button" class="btn btn-dark" (click)="addToCart(selectedGame)" [disabled]="isInCart">
+    {{isInCart ? 'Added to Cart' : 'Add to Cart'}}
+  </button>
+</div>
