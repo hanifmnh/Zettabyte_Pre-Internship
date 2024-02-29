@@ -1,0 +1,9 @@
+<div class="d-flex flex-wrap justify-content-start">
+  <div *ngFor="let liquid of liquids" (click)="selectLiquid(liquid)" class="card m-3 p-2 card-hover"
+    style="width: 14rem; cursor: pointer;">
+    <p class="card-title mb-2 pt-2 px-1 text-center fw-bold text-uppercase">
+      <small>{{liquid.name}}</small>
+    </p>
+    <img [src]="liquid.imageUrl" class="card-img-bottom" [alt]="liquid.name">
+  </div>
+</div>

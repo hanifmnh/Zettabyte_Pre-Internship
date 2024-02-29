@@ -1,0 +1,17 @@
+<div *ngIf="selectedLiquid" class="card mt-3" style="width: 18rem;">
+  <button type="button" class="btn btn-secondary position-absolute top-0 end-0" (click)="closeDetail()">
+    <i class="bi bi-x-lg"></i>
+  </button>
+  <img [src]="selectedLiquid.imageUrl" class="card-img-top" [alt]="selectedLiquid.name">
+  <div class="card-body">
+    <h5 class="card-title text-center fw-bold text-uppercase">{{ selectedLiquid.name }}</h5>
+    <p class="card-text mb-1 fw-medium"><small>{{ selectedLiquid.description }}</small></p>
+    <p class="card-text mb-1"><small><b>Producer:</b> {{ selectedLiquid.producer }}</small></p>
+    <p class="card-text mb-1"><small><b>Type:</b> {{ selectedLiquid.type }}</small></p>
+    <p class="card-text mb-1"><small><b>Content:</b> {{ selectedLiquid.content }}</small></p>
+    <p class="card-text mb-1"><small><b>Nic:</b> {{ selectedLiquid.nic }}</small></p>
+    <p class="card-text mb-1"><small><b>Flavour:</b> {{ selectedLiquid.flavour }}</small></p>
+    <p class="card-text mb-1"><small><b>Price:</b> Rp {{ selectedLiquid.price }}</small></p>
+  </div>
+  <button type="button" class="btn btn-dark" (click)="addLiquidToCart(selectedLiquid)">Add to Cart</button>
+</div>
