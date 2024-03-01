@@ -1,0 +1,18 @@
+<div class="table-responsive bg-white border rounded">
+  <table class="table table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Major</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let studentData of student" (click)="selectStudents(studentData)" class="cursor-pointer">
+        <td>{{ studentData.id }}</td>
+        <td>{{ studentData.major }}</td>
+        <td>{{ studentData.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,23 @@
+<div *ngIf="selectedStudents" class="card mt-3" style="width: 18rem;">
+  <button type="button" class="btn btn-secondary position-absolute top-0 end-0" (click)="closeDetail()">
+    <i class="bi bi-x-lg"></i>
+  </button>
+  <img [src]="selectedStudents.imageUrl" class="card-img-top" [alt]="selectedStudents.name">
+  <div class="card-body">
+    <p class="card-text mb-1"><small><b>ID/NIM:</b> {{ selectedStudents.id }}</small></p>
+    <p class="card-text mb-1"><small><b>Name:</b> {{ selectedStudents.name }}</small></p>
+    <p class="card-text mb-1"><small><b>Date of Birth:</b> {{ selectedStudents.dateOfBirth }}</small></p>
+    <p class="card-text mb-1"><small><b>Major:</b> {{ selectedStudents.major }}</small></p>
+    <p class="card-text mb-1"><small><b>Address:</b> {{ selectedStudents.address }}</small></p>
+    <p class="card-text mb-1"><small><b>Email:</b> {{ selectedStudents.email }}</small></p>
+    <p class="card-text mb-1"><small><b>phoneNumber:</b> {{ selectedStudents.phoneNumber }}</small></p>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-warning mt-3 me-2 w-50">
+        <i class="bi bi-pencil-square"></i>
+      </button>
+      <button type="button" class="btn btn-danger mt-3 ms-2 w-50" (click)="deleteStudent()">
+        <i class="bi bi-trash2-fill"></i>
+      </button>
+    </div>
+  </div>
+</div>
