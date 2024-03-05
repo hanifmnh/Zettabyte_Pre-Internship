@@ -1,0 +1,72 @@
+<div class="container border rounded-3 p-3 my-5" style="background-color: #d0d4ff;">
+  <div class="d-flex justify-content-between mb-3">
+    <h2 class="fw-semibold text-uppercase">{{ isNewHero ? 'Add New Hero' : 'Edit Hero' }}</h2>
+    <button type="button" (click)="cancelForm()" class="btn btn-outline-dark fw-medium shadow-sm">Cancel</button>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control mb-3 mt-1 border-dark" id="name" name="name"
+            [(ngModel)]="newHero.name">
+        </div>
+        <div class="form-group">
+          <label for="imageUrl">Image URL</label>
+          <input type="text" class="form-control mb-3 mt-1 border-dark" id="imageUrl" name="imageUrl"
+            [(ngModel)]="newHero.imageUrl">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control mb-3 mt-1 border-dark" style="height: 7.5rem;" id="description"
+            name="description" [(ngModel)]="newHero.description">
+          </textarea>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select class="form-select mb-3 mt-1 border-dark" id="role" name="role" [(ngModel)]="newHero.role">
+            <option value="">Select Role</option>
+            <option value="Tank">Tank</option>
+            <option value="Fighter">Fighter</option>
+            <option value="Assassin">Assassin</option>
+            <option value="Mage">Mage</option>
+            <option value="Marksman">Marksman</option>
+            <option value="Support">Support</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="lane">Lane</label>
+          <select class="form-select mb-3 mt-1 border-dark" id="lane" name="lane" [(ngModel)]="newHero.lane">
+            <option value="">Select Lane</option>
+            <option value="EXP Lane">EXP Lane</option>
+            <option value="Mid Lane">Mid Lane</option>
+            <option value="Gold Lane">Gold Lane</option>
+            <option value="Jungle">Jungle</option>
+            <option value="Roam">Roam</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="damageType">Damage Type</label>
+          <select class="form-select mb-3 mt-1 border-dark" id="damageType" name="damageType"
+            [(ngModel)]="newHero.damageType">
+            <option value="">Select Damage Type</option>
+            <option value="Physical">Physical</option>
+            <option value="Magical">Magical</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="speciality">Speciality</label>
+          <input type="text" class="form-control mb-3 mt-1 border-dark" id="speciality" name="speciality"
+            [(ngModel)]="newHero.speciality">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-dark w-50 mt-3 border-dark fw-medium" [disabled]="isFormInvalid()">
+        {{ isNewHero ? 'Add Hero' : 'Save Changes' }}
+      </button>
+    </div>
+  </form>
+</div>

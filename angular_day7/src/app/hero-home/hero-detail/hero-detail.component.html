@@ -1,0 +1,22 @@
+<div class="container rounded-3" style="background-color: #d0d4ff;">
+  <div class="row my-5" *ngIf="hero">
+    <div class="col-md-3 p-3">
+      <img [src]="hero.imageUrl" class="img-fluid rounded-3 w-100" [alt]="hero.name">
+    </div>
+    <div class="col-md-9 p-3">
+      <h1 class="fw-semibold text-uppercase">{{hero.name}}</h1>
+      <p class="mb-2"><b>Role:</b> {{hero.role}}</p>
+      <p class="mb-2"><b>Lane:</b> {{hero.lane}}</p>
+      <p class="mb-2"><b>Damage Type:</b> {{hero.damageType}}</p>
+      <p class="mb-2"><b>Speciality:</b> {{hero.speciality}}</p>
+      <p class="mb-2"><b>Description:</b> {{hero.description}}</p>
+      <button class="btn btn-warning w-100 shadow-sm mt-2" (click)="goToEditForm()">
+        Edit <i class="bi bi-pencil-square"></i>
+      </button>
+      <button class="btn btn-danger w-100 shadow-sm my-3" (click)="deleteHero()">
+        Delete <i class="bi bi-trash-fill"></i>
+      </button>
+      <button class="btn btn-dark w-100 shadow-sm" (click)="backToHome()">Back</button>
+    </div>
+  </div>
+</div>
