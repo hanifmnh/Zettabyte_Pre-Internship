@@ -1,0 +1,45 @@
+<div class="container rounded-3" style="background-color: #cfeabe;">
+  <div class="row my-5" *ngIf="soldier">
+    <div class="col-sm-4 p-3">
+      <img [src]="soldier.imageUrl" class="img-fluid rounded-3 w-100" [alt]="soldier.name">
+    </div>
+    <div class="col-sm-8 py-4 ps-5">
+      <button class="btn btn-outline-dark shadow-sm mb-3" (click)="backToHome()">Back to Home</button>
+      <h1 class="mb-2 fw-semibold text-uppercase">{{soldier.name}}</h1>
+      <h4 *ngIf="soldier.rank === 'Commissioned Officer'" class="mb-2 opacity-75 fst-italic">
+        Rank: {{soldier.rank}} (Perwira)
+      </h4>
+      <h4 *ngIf="soldier.rank === 'Non-Commissioned Officer'" class="mb-2 opacity-75 fst-italic">
+        Rank: {{soldier.rank}} (Bintara)
+      </h4>
+      <h4 *ngIf="soldier.rank === 'Enlisted'" class="mb-2 opacity-75 fst-italic">
+        Rank: {{soldier.rank}} (Tamtama)
+      </h4>
+      <div class="d-flex gap-3 fw-light fst-italic">
+        <p class="mb-2">Gender <b class="fw-semibold">{{soldier.gender}}</b></p>
+        <span>|</span>
+        <p class="mb-2">Age <b class="fw-semibold">{{soldier.age}}</b></p>
+        <span>|</span>
+        <p class="mb-2">Status <b class="fw-semibold">{{soldier.maritalStatus}}</b></p>
+        <span>|</span>
+        <p class="mb-2">Email <b class="fw-semibold">{{soldier.email}}</b></p>
+      </div>
+      <div class="d-flex fw-light fst-italic">
+        <p class="mb-2">Address <b class="fw-semibold">{{soldier.addresses.address}}</b></p>
+        <p class="mb-2"><b class="fw-semibold">, {{soldier.addresses.city}}</b></p>
+        <p class="mb-2"><b class="fw-semibold">, {{soldier.addresses.country}}</b></p>
+      </div>
+      <div class="fw-light fst-italic">
+        <p class="mb-2">Zipcode <b class="fw-semibold">{{soldier.addresses.zipcode}}</b></p>
+      </div>
+      <div class="d-flex gap-3">
+        <button class="btn btn-warning w-25 border-dark shadow-sm my-3" (click)="onEditSoldier()">
+          Edit <i class="bi bi-pencil-square"></i>
+        </button>
+        <button class="btn btn-danger w-25 border-dark shadow-sm my-3" (click)="onDeleteSoldier()">
+          Delete <i class="bi bi-trash-fill"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

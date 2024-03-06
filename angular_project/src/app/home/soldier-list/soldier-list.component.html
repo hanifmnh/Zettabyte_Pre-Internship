@@ -1,0 +1,5 @@
+<div (click)="goToDetail(soldiersData.id)" class="card mb-5 mx-3 rounded-3 card-hover"
+  style="width: 14rem; height: 20rem; background-color: #cfeabe; cursor: pointer;">
+  <h5 class="card-title mt-2 text-center text-capitalize">{{soldiersData.name}}</h5>
+  <img [src]="soldiersData.imageUrl" class="rounded-bottom-3 object-fit-cover w-100 h-100" [alt]="soldiersData.name">
+</div>
