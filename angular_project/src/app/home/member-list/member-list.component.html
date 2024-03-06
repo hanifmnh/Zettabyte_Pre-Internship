@@ -1,0 +1,5 @@
+<div (click)="goToDetail(membersData.id)" class="card my-4 mx-3 rounded-3 bg-warning card-hover"
+  style="width: 14rem; cursor: pointer;">
+  <h4 class="card-title mt-2 text-center text-white">{{membersData.nickname}}</h4>
+  <img [src]="membersData.imageUrl" class="rounded-top-3" [alt]="membersData.nickname">
+</div>
