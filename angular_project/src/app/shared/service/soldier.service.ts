@@ -20,7 +20,7 @@ export class SoldierService {
 
   addSoldier(newSoldier: SoldierType): void {
     const currentSoldiers = [...this.soldiersSubject.value];
-    currentSoldiers.push(newSoldier);
+    currentSoldiers.unshift(newSoldier);
     this.soldiersSubject.next(currentSoldiers);
   }
 

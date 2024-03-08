@@ -31,9 +31,14 @@ export class SoldierDetailComponent implements OnInit {
   }
 
   onDeleteSoldier(): void {
-    if (this.soldier) {
-      this.soldierService.deleteSoldier(this.soldier.id);
-      this.router.navigate(['/home']);
+    const confirmDelete = confirm(
+      `Are you sure want to delete ${this.soldier?.name}?`
+    );
+    if (confirmDelete) {
+      if (this.soldier) {
+        this.soldierService.deleteSoldier(this.soldier.id);
+        this.router.navigate(['/home']);
+      }
     }
   }
 

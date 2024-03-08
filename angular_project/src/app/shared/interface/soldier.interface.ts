@@ -1,3 +1,15 @@
+export interface SoldierAddressType {
+  address: string;
+  zipcode: number;
+  city: string;
+  country: string;
+}
+
+export interface SoldierEmergencyContactType {
+  name: string;
+  phoneNumber: string;
+}
+
 export interface SoldierType {
   id: string;
   name: string;
@@ -7,10 +19,6 @@ export interface SoldierType {
   rank: string;
   maritalStatus: string;
   imageUrl: string;
-  addresses: {
-    address: string;
-    zipcode: number;
-    city: string;
-    country: string;
-  };
+  addresses: SoldierAddressType[];
+  emergencyContact: SoldierEmergencyContactType[];
 }

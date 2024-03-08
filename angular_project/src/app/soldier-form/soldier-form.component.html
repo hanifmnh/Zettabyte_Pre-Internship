@@ -1,11 +1,11 @@
-<div class="container rounded-3 p-3 mt-5 my-3" style="background-color: #cfeabe;">
+<div class="container rounded-3 p-3 mt-5 my-4" style="background-color: #e0eec6;">
   <div class="d-flex justify-content-between mb-3">
     <h2 class="fw-semibold text-uppercase">{{ isEditMode ? 'Edit Data Soldier' : 'Add New Soldiers' }}</h2>
     <button type="button" class="btn btn-outline-dark fw-medium shadow-sm" (click)="cancelForm()">Cancel</button>
   </div>
   <form [formGroup]="soldierForm" (ngSubmit)="onSubmit()">
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" formControlName="name" class="form-control mb-3 mt-1 border-dark" id="name">
@@ -43,29 +43,76 @@
           <label for="email">Email</label>
           <input type="email" formControlName="email" class="form-control mb-3 mt-1 border-dark" id="email">
         </div>
-      </div>
-      <div class="col-6">
         <div class="form-group">
           <label for="imageUrl">Image URL</label>
           <input type="text" formControlName="imageUrl" class="form-control mb-3 mt-1 border-dark" id="imageUrl">
         </div>
-        <div formGroupName="addresses">
-          <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" formControlName="address" class="form-control mb-3 mt-1 border-dark" id="address">
+      </div>
+      <div class="col-4">
+        <div formArrayName="addresses">
+          <div *ngFor="let address of addresses.controls; let i=index">
+            <div [formGroupName]="i">
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" formControlName="address" class="form-control mb-3 mt-1 border-dark" id="address">
+              </div>
+              <div class="form-group">
+                <label for="zipcode">Zipcode</label>
+                <input type="text" formControlName="zipcode" class="form-control mb-3 mt-1 border-dark" id="zipcode">
+              </div>
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" formControlName="city" class="form-control mb-3 mt-1 border-dark" id="city">
+              </div>
+              <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" formControlName="country" class="form-control mb-3 mt-1 border-dark" id="country">
+              </div>
+              <div class="d-flex justify-content-start mb-3">
+                <button type="button" *ngIf="showRemoveAddressButton"
+                  class="btn btn-sm border-dark text-white button-hover" (click)="removeAddress(i)"
+                  style="background-color: #800000;">
+                  Remove Address
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="zipcode">Zipcode</label>
-            <input type="text" formControlName="zipcode" class="form-control mb-3 mt-1 border-dark" id="zipcode">
+        </div>
+        <div class="mt-3">
+          <button type="button" class="btn btn-sm border-dark text-white button-hover" (click)="addAddress()"
+            style="background-color: #7ca982;">
+            Add Address
+          </button>
+        </div>
+      </div>
+      <div class=" col-4">
+        <div formArrayName="emergencyContact">
+          <div *ngFor="let contact of emergencyContact.controls; let i=index">
+            <div [formGroupName]="i">
+              <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" formControlName="phoneNumber" class="form-control mb-3 mt-1 border-dark"
+                  id="phoneNumber">
+              </div>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" class="form-control mb-3 mt-1 border-dark" id="name">
+              </div>
+              <div class="d-flex justify-content-start mb-3">
+                <button type="button" *ngIf="showRemoveEmergencyContactButton"
+                  class="btn btn-sm border-dark text-white button-hover" (click)="removeEmergencyContact(i)"
+                  style="background-color: #800000;">
+                  Remove Emergency Contact
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" formControlName="city" class="form-control mb-3 mt-1 border-dark" id="city">
-          </div>
-          <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text" formControlName="country" class="form-control mb-3 mt-1 border-dark" id="country">
-          </div>
+        </div>
+        <div class="mt-3">
+          <button type="button" class="btn btn-sm border-dark text-white button-hover" (click)="addEmergencyContact()"
+            style="background-color: #7ca982;">
+            Add Emergency Contact
+          </button>
         </div>
       </div>
     </div>

@@ -17,12 +17,20 @@ export class SoldierListComponent {
     rank: '',
     maritalStatus: '',
     imageUrl: '',
-    addresses: {
-      address: '',
-      zipcode: 0,
-      city: '',
-      country: '',
-    },
+    addresses: [
+      {
+        address: '',
+        zipcode: 0,
+        city: '',
+        country: '',
+      },
+    ],
+    emergencyContact: [
+      {
+        name: '',
+        phoneNumber: '',
+      },
+    ],
   };
 
   constructor(private router: Router) {}

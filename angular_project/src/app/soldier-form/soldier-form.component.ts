@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SoldierService } from '../shared/service/soldier.service';
 import { v4 as uuidv4 } from 'uuid';
+import {
+  SoldierAddressType,
+  SoldierEmergencyContactType,
+} from '../shared/interface/soldier.interface';
 
 @Component({
   selector: 'app-soldier-form',
@@ -13,6 +17,8 @@ export class SoldierFormComponent implements OnInit {
   soldierForm!: FormGroup;
   soldierId: string = '';
   isEditMode: boolean = false;
+  showRemoveAddressButton: boolean = false;
+  showRemoveEmergencyContactButton: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -27,9 +33,16 @@ export class SoldierFormComponent implements OnInit {
     if (this.soldierId) {
       const soldierData = this.soldierService.getSoldierById(this.soldierId);
       if (soldierData) {
-        this.soldierForm.setValue(soldierData);
+        this.soldierForm.patchValue(soldierData);
+        this.setArrayFormFields(
+          soldierData.addresses,
+          soldierData.emergencyContact
+        );
         this.isEditMode = true;
       }
+    } else {
+      this.addAddress();
+      this.addEmergencyContact();
     }
   }
 
@@ -50,12 +63,90 @@ export class SoldierFormComponent implements OnInit {
       rank: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       imageUrl: ['', [Validators.required]],
-      addresses: this.fb.group({
-        address: ['', [Validators.required]],
-        zipcode: [null, [Validators.required, Validators.pattern(/^[0-9]*$/)]],
-        city: ['', [Validators.required]],
-        country: ['', [Validators.required]],
-      }),
+      addresses: this.fb.array([]),
+      emergencyContact: this.fb.array([]),
+    });
+  }
+
+  setArrayFormFields(
+    addresses: SoldierAddressType[],
+    contacts: SoldierEmergencyContactType[]
+  ) {
+    if (addresses.length === 0) {
+      this.addAddress();
+    } else {
+      addresses.forEach((address) => this.addAddress(address));
+    }
+
+    if (contacts.length === 0) {
+      this.addEmergencyContact();
+    } else {
+      contacts.forEach((contact) => this.addEmergencyContact(contact));
+    }
+  }
+
+  get addresses(): FormArray {
+    return this.soldierForm.get('addresses') as FormArray;
+  }
+
+  get emergencyContact() {
+    return this.soldierForm.get('emergencyContact') as FormArray;
+  }
+
+  addAddress(addressData?: SoldierAddressType) {
+    this.addresses.push(this.createAddress(addressData));
+    this.removeAddressButtonVisibility();
+  }
+
+  addEmergencyContact(contactData?: SoldierEmergencyContactType) {
+    this.emergencyContact.push(this.createEmergencyContact(contactData));
+    this.removeEmergencyContactButtonVisibility();
+  }
+
+  removeAddress(index: number) {
+    this.addresses.removeAt(index);
+    this.removeAddressButtonVisibility();
+  }
+
+  removeEmergencyContact(index: number) {
+    this.emergencyContact.removeAt(index);
+    this.removeEmergencyContactButtonVisibility();
+  }
+
+  removeAddressButtonVisibility() {
+    const addressControls = this.addresses.controls;
+    if (addressControls.length === 1) {
+      this.showRemoveAddressButton = false;
+    } else {
+      this.showRemoveAddressButton = true;
+    }
+  }
+
+  removeEmergencyContactButtonVisibility() {
+    const emergencyContactControls = this.emergencyContact.controls;
+    if (emergencyContactControls.length === 1) {
+      this.showRemoveEmergencyContactButton = false;
+    } else {
+      this.showRemoveEmergencyContactButton = true;
+    }
+  }
+
+  createAddress(addressData?: SoldierAddressType) {
+    return this.fb.group({
+      address: [addressData ? addressData.address : '', Validators.required],
+      zipcode: [
+        addressData ? addressData.zipcode : null,
+        [Validators.required, Validators.pattern(/^[0-9]*$/)],
+      ],
+      city: [addressData ? addressData.city : '', Validators.required],
+      country: [addressData ? addressData.country : '', Validators.required],
+    });
+  }
+
+  createEmergencyContact(contact?: SoldierEmergencyContactType) {
+    return this.fb.group({
+      name: [contact ? contact.name : '', Validators.required],
+      phoneNumber: [contact ? contact.phoneNumber : '', Validators.required],
     });
   }
 

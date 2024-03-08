@@ -1,9 +1,9 @@
-<div class="container rounded-3" style="background-color: #cfeabe;">
+<div class="container rounded-3" style="background-color: #e0eec6;">
   <div class="row my-5" *ngIf="soldier">
     <div class="col-sm-4 p-3">
       <img [src]="soldier.imageUrl" class="img-fluid rounded-3 w-100" [alt]="soldier.name">
     </div>
-    <div class="col-sm-8 py-4 ps-5">
+    <div class="col-sm-8 py-4 px-5">
       <button class="btn btn-outline-dark shadow-sm mb-3" (click)="backToHome()">Back to Home</button>
       <h1 class="mb-2 fw-semibold text-uppercase">{{soldier.name}}</h1>
       <h4 *ngIf="soldier.rank === 'Commissioned Officer'" class="mb-2 opacity-75 fst-italic">
@@ -15,28 +15,52 @@
       <h4 *ngIf="soldier.rank === 'Enlisted'" class="mb-2 opacity-75 fst-italic">
         Rank: {{soldier.rank}} (Tamtama)
       </h4>
-      <div class="d-flex gap-3 fw-light fst-italic">
-        <p class="mb-2">Gender <b class="fw-semibold">{{soldier.gender}}</b></p>
+      <div class="d-flex flex-wrap justify-content-start gap-3 fw-light fst-italic">
+        <p class="mb-1">Gender <b class="fw-semibold">{{soldier.gender}}</b></p>
         <span>|</span>
-        <p class="mb-2">Age <b class="fw-semibold">{{soldier.age}}</b></p>
+        <p class="mb-1">Age <b class="fw-semibold">{{soldier.age}}</b></p>
         <span>|</span>
-        <p class="mb-2">Status <b class="fw-semibold">{{soldier.maritalStatus}}</b></p>
+        <p class="mb-1">Status <b class="fw-semibold">{{soldier.maritalStatus}}</b></p>
         <span>|</span>
-        <p class="mb-2">Email <b class="fw-semibold">{{soldier.email}}</b></p>
+        <p class="mb-1">Email <b class="fw-semibold">{{soldier.email}}</b></p>
       </div>
-      <div class="d-flex fw-light fst-italic">
-        <p class="mb-2">Address <b class="fw-semibold">{{soldier.addresses.address}}</b></p>
-        <p class="mb-2"><b class="fw-semibold">, {{soldier.addresses.city}}</b></p>
-        <p class="mb-2"><b class="fw-semibold">, {{soldier.addresses.country}}</b></p>
+      <div class="d-flex flex-wrap justify-content-between">
+        <div class="d-flex flex-column">
+          <div *ngFor="let address of soldier.addresses; let i = index" class="mt-3">
+            <p class="mb-2 fst-italic text-decoration-underline">
+              {{ soldier.addresses.length === 1 ? 'Address' : 'Address ' + (i + 1) }}
+            </p>
+            <div class="d-flex fw-light fst-italic">
+              <p class="mb-2"><b class="fw-semibold">{{ address.address }}</b></p>
+              <p class="mb-2"><b class="fw-semibold">, {{ address.city }}</b></p>
+              <p class="mb-2"><b class="fw-semibold">, {{ address.country }}</b></p>
+            </div>
+            <div class="fw-light fst-italic">
+              <p class="mb-2">Zipcode <b class="fw-semibold">{{ address.zipcode }}</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-column">
+          <div *ngFor="let contact of soldier.emergencyContact; let i = index" class="mt-3">
+            <p class="mb-2 fst-italic text-decoration-underline">
+              {{ soldier.emergencyContact.length === 1 ? 'Emergency Contact' : 'Emergency Contact ' + (i + 1) }}
+            </p>
+            <div class="d-flex fw-light fst-italic">
+              <p class="mb-2">Phone Number <b class="fw-semibold">{{ contact.phoneNumber }}</b></p>
+            </div>
+            <div class="d-flex fw-light fst-italic">
+              <p class="mb-2">Name <b class="fw-semibold">{{ contact.name }}</b></p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="fw-light fst-italic">
-        <p class="mb-2">Zipcode <b class="fw-semibold">{{soldier.addresses.zipcode}}</b></p>
-      </div>
-      <div class="d-flex gap-3">
-        <button class="btn btn-warning w-25 border-dark shadow-sm my-3" (click)="onEditSoldier()">
+      <div class="d-flex gap-4">
+        <button class="btn w-25 border-dark my-3 button-hover" (click)="onEditSoldier()"
+          style="background-color: #c2a83e;">
           Edit <i class="bi bi-pencil-square"></i>
         </button>
-        <button class="btn btn-danger w-25 border-dark shadow-sm my-3" (click)="onDeleteSoldier()">
+        <button class="btn w-25 border-dark my-3 text-white button-hover" (click)="onDeleteSoldier()"
+          style="background-color: #800000;">
           Delete <i class="bi bi-trash-fill"></i>
         </button>
       </div>
