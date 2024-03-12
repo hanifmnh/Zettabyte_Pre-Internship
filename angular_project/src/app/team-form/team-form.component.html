@@ -1,0 +1,79 @@
+<div class="container border rounded-5 shadow p-3 my-5 w-50 gradient-background">
+  <div class="d-flex justify-content-between mb-3">
+    <h2 class="fw-semibold text-uppercase">{{ isEditMode ? 'Edit Data Team' : 'Add New Team' }}</h2>
+    <button type="button" class="btn btn-outline-dark fw-medium shadow-sm" (click)="cancelForm()">Cancel</button>
+  </div>
+  <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+    <div class="form-group my-3">
+      <label for="fullname">Fullname</label>
+      <input type="text" formControlName="fullname" class="form-control mt-1 border-dark" id="fullname">
+      <div *ngIf="teamForm.get('fullname')?.hasError('required') && teamForm.get('fullname')?.touched"
+        class="text-danger mt-2">
+        Fullname is required
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="nickname">Nickname</label>
+      <input type="text" formControlName="nickname" class="form-control mt-1 border-dark" id="nickname">
+      <div *ngIf="teamForm.get('nickname')?.hasError('required') && teamForm.get('nickname')?.touched"
+        class="text-danger mt-2">
+        Nickname is required
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="email">Email</label>
+      <input type="email" formControlName="email" class="form-control mt-1 border-dark" id="email">
+      <div *ngIf="teamForm.get('email')?.hasError('required') && teamForm.get('email')?.touched"
+        class="text-danger mt-2">
+        Email is required
+      </div>
+      <div *ngIf="teamForm.get('email')?.hasError('email') && teamForm.get('email')?.touched" class="text-danger mt-2">
+        Email must a valid email
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="contact">Contact</label>
+      <input type="text" formControlName="contact" class="form-control mt-1 border-dark" id="contact">
+      <div *ngIf="teamForm.get('contact')?.hasError('required') && teamForm.get('contact')?.touched"
+        class="text-danger mt-2">
+        Contact is required
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="imageUrl">Image URL</label>
+      <input type="text" formControlName="imageUrl" class="form-control mt-1 border-dark" id="imageUrl">
+      <div *ngIf="teamForm.get('imageUrl')?.hasError('required') && teamForm.get('imageUrl')?.touched"
+        class="text-danger mt-2">
+        Image URL is required
+      </div>
+    </div>
+    <div formArrayName="achievements">
+      <div *ngFor="let achievement of achievements.controls; let i=index">
+        <div [formGroupName]="i">
+          <div class="form-group my-3">
+            <label for="achievement{{i}}">Achievement</label>
+            <input type="text" formControlName="achievement" class="form-control mb-3 mt-1 border-dark"
+              id="achievement{{i}}">
+          </div>
+          <div class="d-flex justify-content-start mb-3">
+            <button type="button" class="btn btn-sm border-dark text-white button-hover" (click)="removeAchievement(i)"
+              style="background-color: #640000;">
+              Remove Achievement
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-3">
+      <button type="button" class="btn btn-sm btn-secondary border-dark text-white button-hover"
+        (click)="addAchievement()">
+        Add Achievement
+      </button>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-dark w-100 mt-3 border-dark fw-medium rounded-bottom-4">
+        {{ isEditMode ? 'Save Changes' : 'Add Team' }}
+      </button>
+    </div>
+  </form>
+</div>

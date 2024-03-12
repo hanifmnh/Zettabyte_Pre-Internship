@@ -1,0 +1,30 @@
+<div class="container rounded-5 shadow w-75 gradient-background">
+  <div class="row my-5 border rounded-5" *ngIf="team">
+    <div class="col-sm-8 py-4 px-5">
+      <button class="btn btn-outline-dark shadow-sm mb-3" (click)="backToHome()">Back to Home</button>
+      <h1 class="display-4 mb-1 fw-bolder text-uppercase">{{team.nickname}}</h1>
+      <h4 class="mb-3 opacity-75">{{team.fullname}}</h4>
+      <p class="mb-2">Email: <b class="fw-semibold">{{team.email}}</b></p>
+      <p class="mb-2">Contact: <b class="fw-semibold">{{team.contact}}</b></p>
+      <div class="d-flex flex-column">
+        <p class="mb-2">Achievement:</p>
+        <div *ngFor="let achievements of team.achievements; let i = index" class="mb-1">
+          <p class="mb-1">- <b class="fw-semibold">{{achievements.achievement}}</b></p>
+        </div>
+      </div>
+      <div class="d-flex gap-4">
+        <button class="btn w-25 border-dark my-3 button-hover" (click)="onEditTeam()"
+          style="background-color: #fcab10;">
+          Edit <i class="bi bi-pencil-square"></i>
+        </button>
+        <button class="btn w-25 border-dark my-3 text-white button-hover" (click)="onDeleteTeam()"
+          style="background-color: #640000;">
+          Delete <i class="bi bi-trash-fill"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-4 p-4 d-flex h-100 justify-content-center align-items-center">
+      <img [src]="team.imageUrl" class="rounded-3 w-75 h-75" [alt]="team.fullname">
+    </div>
+  </div>
+</div>

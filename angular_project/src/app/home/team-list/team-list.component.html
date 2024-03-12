@@ -1,0 +1,10 @@
+<div (click)="goToDetail(teamsData.id)" class="card mb-5 py-2 rounded-3 shadow card-hover"
+  style="width: 14rem; height: 20rem; cursor: pointer;">
+  <h5 class=" card-title mt-2 mb-0 p-2 fw-bold text-center text-uppercase text-white"
+    style="background-color: #640000;">
+    {{teamsData.nickname}}
+  </h5>
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <img [src]="teamsData.imageUrl" class="object-fit-cover w-50" [alt]="teamsData.fullname">
+  </div>
+</div>

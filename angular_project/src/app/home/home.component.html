@@ -1,0 +1,20 @@
+<div class="container-fluid p-0 position-relative">
+  <img
+    src="https://mplid-storage.sgp1.digitaloceanspaces.com/season13/Banner/KV_BANNER_MPLS13.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=53XCITH3UP462OQE23ZY%2F20240311%2Fsgp1%2Fs3%2Faws4_request&X-Amz-Date=20240311T200542Z&X-Amz-SignedHeaders=host&X-Amz-Expires=21600&X-Amz-Signature=6458dd50feec4599c4081c6670f8f3e97d2cb919a5b523f6da420abb2264dcce"
+    class="w-100 object-fit-cover" alt="Hero Image" style="height: 60vh;">
+</div>
+<div class=" container pb-4">
+  <div class="d-flex justify-content-between mt-5">
+    <h1 class="mb-0 fw-bolder text-uppercase text-hover">Teams</h1>
+    <button class="btn btn-dark fw-semibold button-hover" (click)="goToForm()">
+      Add New Team
+    </button>
+  </div>
+  <div class="overflow-x-auto">
+    <div class="d-flex flex-nowrap mt-5 px-4 gap-4">
+      <div *ngFor="let team of teams">
+        <app-team-list [teamsData]="team"></app-team-list>
+      </div>
+    </div>
+  </div>
+</div>
