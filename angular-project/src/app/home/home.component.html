@@ -1,0 +1,21 @@
+<div class="container-fluid p-0 position-relative">
+  <img src="https://www.halodoc.com/assets/img/home-v2/webp/home-banner-v3.svg" class="w-100 object-fit-cover"
+    alt="Hero Image" style="height: 60vh;">
+  <div class="position-absolute top-50 start-0 translate-middle-y ms-5">
+    <h1 class="display-3 fw-bold">PulseCare</h1>
+    <p class="lead fw-semibold text-capitalize">Hospital Information System</p>
+  </div>
+</div>
+<div class=" container pb-4">
+  <div class="d-flex justify-content-between mt-5">
+    <h1 class="mb-0 fw-bolder text-white text-uppercase">Patients</h1>
+    <button class="btn btn-light fw-medium button-hover" (click)="goToForm()">
+      Add New Patient
+    </button>
+  </div>
+  <div class="d-flex flex-wrap justify-content-evenly mt-5 mb-4 gap-3">
+    <div *ngFor="let patient of patients">
+      <app-patient-list [patientsData]="patient"></app-patient-list>
+    </div>
+  </div>
+</div>

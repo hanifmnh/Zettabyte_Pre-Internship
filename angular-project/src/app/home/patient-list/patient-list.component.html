@@ -1,0 +1,9 @@
+<div (click)="goToDetail(patientsData.id)" class="card bg-light mb-5 py-2 border-0 rounded-3 shadow card-hover"
+  style="width: 14rem; height: 20rem; cursor: pointer;">
+  <h5 class=" card-title mt-2 mb-0 p-2 fw-medium text-center text-capitalize text-white bg-dark">
+    {{patientsData.name}}
+  </h5>
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <img [src]="patientsData.imageUrl" class="object-fit-cover w-75" [alt]="patientsData.name">
+  </div>
+</div>

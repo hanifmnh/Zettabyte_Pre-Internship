@@ -1,0 +1,29 @@
+<div class="container rounded-5 shadow w-75 bg-light">
+  <div class="row my-5 border rounded-5" *ngIf="patient">
+    <div class="col-sm-8 py-4 px-5">
+      <button class="btn btn-outline-dark shadow-sm mb-3" (click)="backToHome()">Back to Home</button>
+      <h1 class="display-5 mb-2 fw-bolder text-capitalize">{{patient.name}}</h1>
+      <p class="mb-2">Gender: <b class="fw-semibold">{{patient.gender}}</b></p>
+      <p class="mb-2">Age: <b class="fw-semibold">{{patient.age}}</b></p>
+      <p class="mb-2">Address: <b class="fw-semibold">{{patient.address}}</b></p>
+      <p class="mb-2">Contact: <b class="fw-semibold">{{patient.contact}}</b></p>
+      <div class="d-flex flex-column">
+        <p class="mb-2">Complaints:</p>
+        <div *ngFor="let complaints of patient.complaints; let i = index" class="mb-1">
+          <p class="mb-1">- <b class="fw-semibold text-capitalize">{{complaints.complaint}}</b></p>
+        </div>
+      </div>
+      <div class="d-flex gap-4">
+        <button class="btn btn-warning w-25 border-dark my-3 button-hover" (click)="onEditPatient()">
+          Edit <i class="bi bi-pencil-square"></i>
+        </button>
+        <button class="btn btn-danger w-25 border-dark my-3 text-white button-hover" (click)="onDeletePatient()">
+          Delete <i class="bi bi-trash-fill"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-4 p-4 d-flex h-100 justify-content-center align-items-center">
+      <img [src]="patient.imageUrl" class="rounded-3 w-75 h-75" [alt]="patient.name">
+    </div>
+  </div>
+</div>

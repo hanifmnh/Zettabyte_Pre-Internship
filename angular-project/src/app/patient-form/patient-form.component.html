@@ -1,0 +1,97 @@
+<div class="container bg-light border rounded-4 shadow p-3 my-5 w-50">
+  <div class="d-flex justify-content-between mb-3">
+    <h2 class="fw-semibold text-uppercase">{{ isEditMode ? 'Edit Data Patient' : 'Add New Patient' }}</h2>
+    <button type="button" class="btn btn-outline-dark fw-medium shadow-sm" (click)="cancelForm()">Cancel</button>
+  </div>
+  <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+    <div class=" form-group my-3">
+      <label for="name">Name</label>
+      <input type="text" formControlName="name" class="form-control mt-1 border-dark" id="name"
+        [ngClass]="{ 'is-invalid': patientForm.get('name')?.invalid && patientForm.get('name')?.touched, 'border-invalid': patientForm.get('name')?.invalid && patientForm.get('name')?.touched }">
+      <div *ngIf="patientForm.get('name')?.hasError('required') && patientForm.get('name')?.touched"
+        class="invalid-feedback mt-2">
+        Name is required
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="gender">Gender</label>
+      <select formControlName="gender" class="form-select mt-1 border-dark" id="gender"
+        [ngClass]="{ 'is-invalid': patientForm.get('gender')?.invalid && patientForm.get('gender')?.touched, 'border-invalid': patientForm.get('gender')?.invalid && patientForm.get('gender')?.touched }">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <div *ngIf="patientForm.get('gender')?.hasError('required') && patientForm.get('gender')?.touched"
+        class="invalid-feedback mt-2">
+        Gender is required
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="age">Age</label>
+      <input type="text" formControlName="age" class="form-control mt-1 border-dark" id="age"
+        [ngClass]="{ 'is-invalid': patientForm.get('age')?.invalid && patientForm.get('age')?.touched, 'border-invalid': patientForm.get('age')?.invalid && patientForm.get('age')?.touched }">
+      <div *ngIf="patientForm.get('age')?.hasError('required') && patientForm.get('age')?.touched"
+        class="invalid-feedback mt-2">
+        Age is required
+      </div>
+      <div *ngIf="patientForm.get('age')?.hasError('pattern') && patientForm.get('age')?.touched"
+        class="invalid-feedback mt-2">
+        Age must be a maximum of 2 digits
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="address">Address</label>
+      <input type="text" formControlName="address" class="form-control mt-1 border-dark" id="address"
+        [ngClass]="{ 'is-invalid': patientForm.get('address')?.invalid && patientForm.get('address')?.touched, 'border-invalid': patientForm.get('address')?.invalid && patientForm.get('address')?.touched }">
+      <div *ngIf="patientForm.get('address')?.hasError('required') && patientForm.get('address')?.touched"
+        class="invalid-feedback mt-2">
+        Address is required
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="contact">Contact</label>
+      <input type="text" formControlName="contact" class="form-control mt-1 border-dark" id="contact"
+        [ngClass]="{ 'is-invalid': patientForm.get('contact')?.invalid && patientForm.get('contact')?.touched, 'border-invalid': patientForm.get('contact')?.invalid && patientForm.get('contact')?.touched }">
+      <div *ngIf="patientForm.get('contact')?.hasError('required') && patientForm.get('contact')?.touched"
+        class="invalid-feedback mt-2">
+        Contact is required
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="imageUrl">Image URL</label>
+      <input type="text" formControlName="imageUrl" class="form-control mt-1 border-dark" id="imageUrl"
+        [ngClass]="{ 'is-invalid': patientForm.get('imageUrl')?.invalid && patientForm.get('imageUrl')?.touched, 'border-invalid': patientForm.get('imageUrl')?.invalid && patientForm.get('imageUrl')?.touched }">
+      <div *ngIf="patientForm.get('imageUrl')?.hasError('required') && patientForm.get('imageUrl')?.touched"
+        class="invalid-feedback mt-2">
+        Image URL is required
+      </div>
+    </div>
+    <div formArrayName="complaints">
+      <div *ngFor="let complaint of complaints.controls; let i=index">
+        <div [formGroupName]="i">
+          <div class="form-group my-3">
+            <label for="complaint{{i}}">Complaint</label>
+            <input type="text" formControlName="complaint" class="form-control mb-3 mt-1 border-dark"
+              id="complaint{{i}}">
+          </div>
+          <div class="d-flex justify-content-start mb-3">
+            <button type="button" *ngIf="showRemoveComplaintButton" class="btn btn-sm btn-danger border-dark text-white"
+              (click)="removeComplaint(i)">
+              Remove Complaint
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-start mb-3">
+      <button type="button" class="btn btn-sm btn-secondary border-dark w-100" (click)="addComplaint()">
+        Add Complaint
+      </button>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-dark w-100 mt-3 border-dark fw-medium">
+        {{ isEditMode ? 'Save Changes' : 'Add Patient' }}
+      </button>
+    </div>
+  </form>
+</div>
