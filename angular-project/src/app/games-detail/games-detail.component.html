@@ -1,0 +1,40 @@
+<div class="container rounded-5 shadow w-75 bg-light">
+  <div class="row my-5 border rounded-5" *ngIf="games">
+    <div class="col-sm-8 py-4 px-5">
+      <button class="btn btn-outline-dark shadow-sm mb-3" (click)="backToHome()">
+        {{ 'Back to Home' | translate }}
+      </button>
+      <h1 class="display-5 mb-2 fw-bolder">{{ games.name | uppercase }}</h1>
+      <p class="mb-2">{{games.description}}</p>
+      <p class="mb-2">{{ 'Publisher' | translate }}: <b class="fw-semibold">{{games.publisher}}</b></p>
+      <p *ngIf="games.price === '0'" class="mb-2">{{ 'Price' | translate }}:
+        <b class="fw-semibold">{{ 'Free' | translate }}</b>
+      </p>
+      <p *ngIf="games.price !== '0'" class="mb-2">{{ 'Price' | translate }}:
+        <b class="fw-semibold">Rp.{{games.price}}</b>
+      </p>
+      <div class="d-flex flex-column">
+        <p class="mb-2">{{ 'Genre' | translate }}:</p>
+        <div *ngFor="let genres of games.genres; let i = index" class="d-flex mb-1">
+          <p *ngIf="genres.genre.length === 0" class="badge text-bg-dark mb-1">
+            <b class="fw-semibold">{{ 'Unknown' | translate }}</b>
+          </p>
+          <p *ngIf="genres.genre.length !== 0" class="badge text-bg-dark mb-1">
+            <b class="fw-semibold">{{ genres.genre | uppercase }}</b>
+          </p>
+        </div>
+      </div>
+      <div class="d-flex gap-4">
+        <button class="btn btn-warning w-25 my-3 button-hover" (click)="onEditGames()">
+          {{ 'Edit' | translate }} <i class="bi bi-pencil-square"></i>
+        </button>
+        <button class="btn btn-danger w-25 my-3 text-white button-hover" (click)="onDeleteGames()">
+          {{ 'Delete' | translate }} <i class="bi bi-trash-fill"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-4 p-4 d-flex h-100 justify-content-center align-items-center">
+      <img [src]="games.imgUrl" class="rounded-3 w-100 h-100" [alt]="games.name">
+    </div>
+  </div>
+</div>

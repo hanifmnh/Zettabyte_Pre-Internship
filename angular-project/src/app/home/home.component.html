@@ -1,0 +1,23 @@
+<div class="container-fluid p-0 position-relative">
+  <img src="https://live.staticflickr.com/3921/15291074275_7a5c30b687_k.jpg" class="w-100 object-fit-cover"
+    alt="Hero Image" style="height: 60vh;">
+  <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+    <h1 class="display-3 fw-bold">Steamy Games</h1>
+    <p class="lead fw-semibold text-capitalize">{{ 'Discover All Games That You Want' | translate }}</p>
+  </div>
+</div>
+<div class=" container pb-4">
+  <div class="d-flex justify-content-between mt-5 gap-3">
+    <h1 class="mb-0 fw-bolder text-white text-uppercase">{{ 'Games List' | translate }}</h1>
+    <input type="text" class="form-control w-50" placeholder="{{ 'Search Games' | translate }}"
+      [(ngModel)]="searchTerm">
+    <button class="btn btn-light fw-medium button-hover" (click)="goToForm()">
+      {{ 'Add New Games' | translate }}
+    </button>
+  </div>
+  <div class="d-flex flex-wrap justify-content-evenly mt-5 mb-4 gap-3">
+    <div *ngFor="let game of filteredGames">
+      <app-games-list [gameData]="game"></app-games-list>
+    </div>
+  </div>
+</div>

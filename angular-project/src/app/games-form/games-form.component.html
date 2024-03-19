@@ -1,0 +1,92 @@
+<div class="container bg-light border rounded-4 shadow p-3 my-5 w-50">
+  <div class="d-flex justify-content-between mb-3">
+    <h2 *ngIf="isEditMode === true" class="fw-semibold text-uppercase">
+      {{ 'Edit Data Games' | translate }}
+    </h2>
+    <h2 *ngIf="isEditMode === false" class="fw-semibold text-uppercase">
+      {{ 'Add New Games' | translate }}
+    </h2>
+    <button type="button" class="btn btn-outline-dark fw-medium shadow-sm" (click)="cancelForm()">
+      {{ 'Cancel' | translate }}
+    </button>
+  </div>
+  <form [formGroup]="gamesForm" (ngSubmit)="onSubmit()">
+    <div class=" form-group my-3">
+      <label for="name">{{ 'Name' | translate }}</label>
+      <input type="text" formControlName="name" class="form-control mt-1 border-dark" id="name"
+        [ngClass]="{ 'is-invalid': gamesForm.get('name')?.invalid && gamesForm.get('name')?.touched, 'border-invalid': gamesForm.get('name')?.invalid && gamesForm.get('name')?.touched }">
+      <div *ngIf="gamesForm.get('name')?.hasError('required') && gamesForm.get('name')?.touched"
+        class="invalid-feedback mt-2">
+        {{ 'Name is required' | translate }}
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="publisher">{{ 'Publisher' | translate }}</label>
+      <input type="text" formControlName="publisher" class="form-control mt-1 border-dark" id="publisher"
+        [ngClass]="{ 'is-invalid': gamesForm.get('publisher')?.invalid && gamesForm.get('publisher')?.touched, 'border-invalid': gamesForm.get('publisher')?.invalid && gamesForm.get('publisher')?.touched }">
+      <div *ngIf="gamesForm.get('publisher')?.hasError('required') && gamesForm.get('publisher')?.touched"
+        class="invalid-feedback mt-2">
+        {{ 'Publisher is required' | translate }}
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="description">{{ 'Description' | translate }}</label>
+      <textarea formControlName="description" class="form-control mt-1 border-dark" id="description"
+        [ngClass]="{ 'is-invalid': gamesForm.get('description')?.invalid && gamesForm.get('description')?.touched, 'border-invalid': gamesForm.get('description')?.invalid && gamesForm.get('description')?.touched }"></textarea>
+      <div *ngIf="gamesForm.get('description')?.hasError('required') && gamesForm.get('description')?.touched"
+        class="invalid-feedback mt-2">
+        {{ 'Description is required' | translate }}
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="price">{{ 'Price' | translate }}</label>
+      <input type="text" formControlName="price" class="form-control mt-1 border-dark" id="price"
+        [ngClass]="{ 'is-invalid': gamesForm.get('price')?.invalid && gamesForm.get('price')?.touched, 'border-invalid': gamesForm.get('price')?.invalid && gamesForm.get('price')?.touched }">
+      <div *ngIf="gamesForm.get('price')?.hasError('required') && gamesForm.get('price')?.touched"
+        class="invalid-feedback mt-2">
+        {{ 'Price is required' | translate }}
+      </div>
+      <div *ngIf="gamesForm.get('price')?.hasError('pattern') && gamesForm.get('price')?.touched"
+        class="invalid-feedback mt-2">
+        {{ 'Price must be a number' | translate }}
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="imgUrl">{{ 'Image URL' | translate }}</label>
+      <input type="text" formControlName="imgUrl" class="form-control mt-1 border-dark" id="imgUrl"
+        [ngClass]="{ 'is-invalid': gamesForm.get('imgUrl')?.invalid && gamesForm.get('imgUrl')?.touched, 'border-invalid': gamesForm.get('imgUrl')?.invalid && gamesForm.get('imgUrl')?.touched }">
+      <div *ngIf="gamesForm.get('imgUrl')?.hasError('required') && gamesForm.get('imgUrl')?.touched"
+        class="invalid-feedback mt-2">
+        {{ 'Image URL is required' | translate }}
+      </div>
+    </div>
+    <div formArrayName="genres">
+      <div *ngFor="let genre of genres.controls; let i=index">
+        <div [formGroupName]="i">
+          <div class="form-group my-3">
+            <label for="genre{{i}}">{{ 'Genre' | translate }}</label>
+            <input type="text" formControlName="genre" class="form-control mb-3 mt-1 border-dark" id="genre{{i}}">
+          </div>
+          <div class="d-flex justify-content-start mb-3">
+            <button type="button" class="btn btn-sm btn-danger border-dark text-white" (click)="removeGenre(i)">
+              {{ 'Remove Genre' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-start mb-3">
+      <button type="button" class="btn btn-sm btn-secondary border-dark w-100" (click)="addGenre()">
+        {{ 'Add Genre' | translate }}
+      </button>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button *ngIf="isEditMode === true" type="submit" class="btn btn-dark w-100 mt-3 border-dark fw-medium">
+        {{ 'Save Changes' | translate }}
+      </button>
+      <button *ngIf="isEditMode === false" type="submit" class="btn btn-dark w-100 mt-3 border-dark fw-medium">
+        {{ 'Add Games' | translate }}
+      </button>
+    </div>
+  </form>
+</div>
