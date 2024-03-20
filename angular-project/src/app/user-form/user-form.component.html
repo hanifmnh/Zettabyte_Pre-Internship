@@ -1,0 +1,152 @@
+<div class="container bg-light border rounded-4 shadow p-3 my-5 w-50">
+  <div class="d-flex justify-content-between mb-3">
+    <h2 class="fw-semibold text-uppercase">
+      {{ isEditMode ? 'Edit Data Worker' : 'Add New Worker' }}
+    </h2>
+    <button type="button" class="btn btn-outline-dark fw-medium shadow-sm" (click)="cancelForm()">Cancel</button>
+  </div>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class=" form-group my-3">
+      <label for="name">Name</label>
+      <input type="text" formControlName="name" class="form-control mt-1 border-dark" id="name"
+        [ngClass]="{ 'is-invalid': userForm.get('name')?.invalid && userForm.get('name')?.touched, 'border-invalid': userForm.get('name')?.invalid && userForm.get('name')?.touched }">
+      <div *ngIf="userForm.get('name')?.hasError('required') && userForm.get('name')?.touched"
+        class="invalid-feedback mt-2">
+        Name is required
+      </div>
+    </div>
+    <div class=" form-group my-3">
+      <label for="username">Username</label>
+      <input type="text" formControlName="username" class="form-control mt-1 border-dark" id="username"
+        [ngClass]="{ 'is-invalid': userForm.get('username')?.invalid && userForm.get('username')?.touched, 'border-invalid': userForm.get('username')?.invalid && userForm.get('username')?.touched }">
+      <div *ngIf="userForm.get('username')?.hasError('required') && userForm.get('username')?.touched"
+        class="invalid-feedback mt-2">
+        Username is required
+      </div>
+    </div>
+    <div class=" form-group my-3">
+      <label for="email">Email</label>
+      <input type="email" formControlName="email" class="form-control mt-1 border-dark" id="email"
+        [ngClass]="{ 'is-invalid': userForm.get('email')?.invalid && userForm.get('email')?.touched, 'border-invalid': userForm.get('email')?.invalid && userForm.get('email')?.touched }">
+      <div *ngIf="userForm.get('email')?.hasError('required') && userForm.get('email')?.touched"
+        class="invalid-feedback mt-2">
+        Email is required
+      </div>
+      <div *ngIf="userForm.get('email')?.hasError('email') && userForm.get('email')?.touched"
+        class="invalid-feedback mt-2">
+        Email must be a valid email
+      </div>
+    </div>
+    <div formGroupName="address">
+      <div class=" form-group my-3">
+        <label for="street">Street</label>
+        <input type="text" formControlName="street" class="form-control mt-1 border-dark" id="street"
+          [ngClass]="{ 'is-invalid': userForm.get('address.street')?.invalid && userForm.get('address.street')?.touched, 'border-invalid': userForm.get('address.street')?.invalid && userForm.get('address.street')?.touched }">
+        <div *ngIf="userForm.get('address.street')?.hasError('required') && userForm.get('address.street')?.touched"
+          class="invalid-feedback mt-2">
+          Street is required
+        </div>
+      </div>
+      <div class=" form-group my-3">
+        <label for="suite">Suite</label>
+        <input type="text" formControlName="suite" class="form-control mt-1 border-dark" id="suite"
+          [ngClass]="{ 'is-invalid': userForm.get('address.suite')?.invalid && userForm.get('address.suite')?.touched, 'border-invalid': userForm.get('address.suite')?.invalid && userForm.get('address.suite')?.touched }">
+        <div *ngIf="userForm.get('address.suite')?.hasError('required') && userForm.get('address.suite')?.touched"
+          class="invalid-feedback mt-2">
+          Suite is required
+        </div>
+      </div>
+      <div class=" form-group my-3">
+        <label for="city">City</label>
+        <input type="text" formControlName="city" class="form-control mt-1 border-dark" id="city"
+          [ngClass]="{ 'is-invalid': userForm.get('address.city')?.invalid && userForm.get('address.city')?.touched, 'border-invalid': userForm.get('address.city')?.invalid && userForm.get('address.city')?.touched }">
+        <div *ngIf="userForm.get('address.city')?.hasError('required') && userForm.get('address.city')?.touched"
+          class="invalid-feedback mt-2">
+          City is required
+        </div>
+      </div>
+      <div class=" form-group my-3">
+        <label for="zipcode">Zipcode</label>
+        <input type="text" formControlName="zipcode" class="form-control mt-1 border-dark" id="zipcode"
+          [ngClass]="{ 'is-invalid': userForm.get('address.zipcode')?.invalid && userForm.get('address.zipcode')?.touched, 'border-invalid': userForm.get('address.zipcode')?.invalid && userForm.get('address.zipcode')?.touched }">
+        <div *ngIf="userForm.get('address.zipcode')?.hasError('required') && userForm.get('address.zipcode')?.touched"
+          class="invalid-feedback mt-2">
+          Zipcode is required
+        </div>
+      </div>
+      <div formGroupName="geo">
+        <div class=" form-group my-3">
+          <label for="lat">Latitutude</label>
+          <input type="text" formControlName="lat" class="form-control mt-1 border-dark" id="lat"
+            [ngClass]="{ 'is-invalid': userForm.get('address.geo.lat')?.invalid && userForm.get('address.geo.lat')?.touched, 'border-invalid': userForm.get('address.geo.lat')?.invalid && userForm.get('address.geo.lat')?.touched }">
+          <div *ngIf="userForm.get('address.geo.lat')?.hasError('required') && userForm.get('address.geo.lat')?.touched"
+            class="invalid-feedback mt-2">
+            Latitude is required
+          </div>
+        </div>
+        <div class=" form-group my-3">
+          <label for="lng">Longitudinal</label>
+          <input type="text" formControlName="lng" class="form-control mt-1 border-dark" id="lng"
+            [ngClass]="{ 'is-invalid': userForm.get('address.geo.lng')?.invalid && userForm.get('address.geo.lng')?.touched, 'border-invalid': userForm.get('address.geo.lng')?.invalid && userForm.get('address.geo.lng')?.touched }">
+          <div *ngIf="userForm.get('address.geo.lng')?.hasError('required') && userForm.get('address.geo.lng')?.touched"
+            class="invalid-feedback mt-2">
+            Longitudinal is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" form-group my-3">
+      <label for="phone">Phone</label>
+      <input type="text" formControlName="phone" class="form-control mt-1 border-dark" id="phone"
+        [ngClass]="{ 'is-invalid': userForm.get('phone')?.invalid && userForm.get('phone')?.touched, 'border-invalid': userForm.get('phone')?.invalid && userForm.get('phone')?.touched }">
+      <div *ngIf="userForm.get('phone')?.hasError('required') && userForm.get('phone')?.touched"
+        class="invalid-feedback mt-2">
+        Phone is required
+      </div>
+    </div>
+    <div class=" form-group my-3">
+      <label for="website">Website</label>
+      <input type="text" formControlName="website" class="form-control mt-1 border-dark" id="website"
+        [ngClass]="{ 'is-invalid': userForm.get('website')?.invalid && userForm.get('website')?.touched, 'border-invalid': userForm.get('website')?.invalid && userForm.get('website')?.touched }">
+      <div *ngIf="userForm.get('website')?.hasError('required') && userForm.get('website')?.touched"
+        class="invalid-feedback mt-2">
+        Website is required
+      </div>
+    </div>
+    <div formGroupName="company">
+      <div class=" form-group my-3">
+        <label for="companyName">Company Name</label>
+        <input type="text" formControlName="name" class="form-control mt-1 border-dark" id="companyName"
+          [ngClass]="{ 'is-invalid': userForm.get('company.name')?.invalid && userForm.get('company.name')?.touched, 'border-invalid': userForm.get('company.name')?.invalid && userForm.get('company.name')?.touched }">
+        <div *ngIf="userForm.get('company.name')?.hasError('required') && userForm.get('company.name')?.touched"
+          class="invalid-feedback mt-2">
+          Company Name is required
+        </div>
+      </div>
+      <div class=" form-group my-3">
+        <label for="catchPhrase">CatchPhrase</label>
+        <input type="text" formControlName="catchPhrase" class="form-control mt-1 border-dark" id="catchPhrase"
+          [ngClass]="{ 'is-invalid': userForm.get('company.catchPhrase')?.invalid && userForm.get('company.catchPhrase')?.touched, 'border-invalid': userForm.get('company.catchPhrase')?.invalid && userForm.get('company.catchPhrase')?.touched }">
+        <div
+          *ngIf="userForm.get('company.catchPhrase')?.hasError('required') && userForm.get('company.catchPhrase')?.touched"
+          class="invalid-feedback mt-2">
+          CatchPhrase is required
+        </div>
+      </div>
+      <div class=" form-group my-3">
+        <label for="bs">Business Strategy</label>
+        <input type="text" formControlName="bs" class="form-control mt-1 border-dark" id="bs"
+          [ngClass]="{ 'is-invalid': userForm.get('company.bs')?.invalid && userForm.get('company.bs')?.touched, 'border-invalid': userForm.get('company.bs')?.invalid && userForm.get('company.bs')?.touched }">
+        <div *ngIf="userForm.get('company.bs')?.hasError('required') && userForm.get('company.bs')?.touched"
+          class="invalid-feedback mt-2">
+          Business Strategy is required
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-dark w-100 mt-3 border-dark fw-medium">
+        {{ isEditMode ? 'Save Changes' : 'Add Worker' }}
+      </button>
+    </div>
+  </form>
+</div>

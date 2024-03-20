@@ -1,0 +1,22 @@
+<div class="container-fluid p-0 position-relative">
+  <img
+    src="https://www.auckland.ac.nz/content/auckland/en/study/study-options/find-a-study-option/bachelor-of-social-work-bsw/_jcr_content/header/image.img.768.medium.jpg/1605043757734.jpg"
+    class="w-100 opacity-50 object-fit-cover" alt="Hero Image" style="height: 60vh;">
+  <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+    <h1 class="display-3 fw-bold">The Workers</h1>
+    <p class="lead fw-semibold text-capitalize">Company Information System</p>
+  </div>
+</div>
+<div class=" container pb-4">
+  <div class="d-flex justify-content-between mt-5 gap-3">
+    <h1 class="mb-0 fw-bolder text-white text-uppercase">Worker List</h1>
+    <button class="btn btn-light fw-medium button-hover" (click)="goToForm()">
+      Add New Worker
+    </button>
+  </div>
+  <div class="d-flex flex-wrap justify-content-evenly mt-5 mb-4 gap-3">
+    <div *ngFor="let user of users">
+      <app-user-list [userData]="user"></app-user-list>
+    </div>
+  </div>
+</div>

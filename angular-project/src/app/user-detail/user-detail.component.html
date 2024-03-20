@@ -1,0 +1,33 @@
+<div class="container rounded-5 shadow w-75 bg-light">
+  <div class="row my-5 border rounded-5" *ngIf="user">
+    <div class="col-sm-8 py-4 px-5">
+      <button class="btn btn-outline-dark shadow-sm mb-3" (click)="backToHome()">Back to Home</button>
+      <h1 class="display-5 mb-2 fw-bolder">{{ user.name }}</h1>
+      <p class="mb-2">Username: <b class="fw-semibold">{{ user.username }}</b></p>
+      <p class="mb-2">Email: <b class="fw-semibold">{{ user.email }}</b></p>
+      <p class="mb-2">Address: <b class="fw-semibold">
+          {{ user.address.street }}, {{ user.address.suite }}, {{ user.address.city }}, {{ user.address.zipcode }}
+        </b></p>
+      <p class="mb-2">Geo Address: <b class="fw-semibold">
+          {{ user.address.geo.lat }} (Latitutude), {{ user.address.geo.lng }} (Longitudinal)
+        </b></p>
+      <p class="mb-2">Phone: <b class="fw-semibold">{{ user.phone }}</b></p>
+      <p class="mb-3">Website: <b class="fw-semibold">{{ user.website }}</b></p>
+      <p class="mb-2"><b class="fw-semibold">Company:</b></p>
+      <p class="mb-2">- Name: <b class="fw-semibold">{{ user.company.name }}</b></p>
+      <p class="mb-2">- CatchPhrase: <b class="fw-semibold">{{ user.company.catchPhrase }}</b></p>
+      <p class="mb-2">- Business Strategy: <b class="fw-semibold">{{ user.company.bs }}</b></p>
+      <div class="d-flex gap-4">
+        <button class="btn btn-warning w-25 my-3 button-hover" (click)="onEditUser()">
+          Edit <i class="bi bi-pencil-square"></i>
+        </button>
+        <button class="btn btn-danger w-25 my-3 text-white button-hover" (click)="onDeleteUser()">
+          Delete <i class="bi bi-trash-fill"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-4 p-4 d-flex h-100 justify-content-center align-items-center">
+      <img src="https://cdn-icons-png.freepik.com/256/1077/1077114.png" class="rounded-3 w-100 h-100" alt="user">
+    </div>
+  </div>
+</div>
