@@ -1,0 +1,60 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 2vw;
+  margin-left: 10vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 2vw;
+}
+
+.mat-radio-group {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2vw;
+}
+
+button[type="submit"] {
+  width: 100%;
+  margin-bottom: 1vw;
+}
+
+::ng-deep .mdc-form-field {
+  color: white !important;
+}
+
+::ng-deep .mat-mdc-radio-button.mat-accent {
+  --mdc-radio-unselected-icon-color: white;
+}
+
+.select-lang {
+  padding: 8px 12px;
+  margin: 12px;
+  font-size: 16px;
+  background-color: #457b9d;
+  border-color: #457b9d;
+  color: #f1faee;
+  outline: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.select-lang:hover {
+  background-color: #f1faee;
+  border-color: #a8dadc;
+  color: #333;
+}
+
+.select-lang option {
+  background-color: #f1faee;
+  color: #333;
+}
+
+.select-lang option:hover {
+  background-color: #f1faee;
+}

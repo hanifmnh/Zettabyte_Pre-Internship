@@ -1,0 +1,23 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav style="background-color: #457b9d;" #sidenav mode="side" [opened]="isSidenavOpen">
+    <img style="width: 8vw; padding: 1vw 3vw;" src="https://static.thenounproject.com/png/2449011-200.png" />
+    <mat-nav-list>
+      <a style="font-weight: 500;" mat-list-item routerLink="/home">
+        <span style="color: white;">
+          <mat-icon>home</mat-icon> Home
+        </span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div style="background-color: #a8dadc; min-height: 100vh;">
+      <button style="margin-left: 1vw;" mat-icon-button (click)="toggleSidenav()">
+        <mat-icon style="font-size: 2vw">menu</mat-icon>
+      </button>
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

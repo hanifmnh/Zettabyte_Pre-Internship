@@ -1,0 +1,95 @@
+<div style="display: flex; justify-content: space-between; background-color: #a8dadc; margin-bottom: 0;">
+  <h1 mat-dialog-title *ngIf="isEditMode === true" style="font-weight: 600;">
+    {{ "EDIT DATA MENTOR" | translate }}
+  </h1>
+  <h1 mat-dialog-title *ngIf="isEditMode === false" style="font-weight: 600;">
+    {{ "ADD NEW MENTOR" | translate }}
+  </h1>
+  <select (change)="switchLang($event)" class="select-lang">
+    <option value="en">EN</option>
+    <option value="fr">FR</option>
+  </select>
+</div>
+<mat-dialog-content class="mat-typography" style="background-color: #f1faee;">
+  <form [formGroup]="mentorForm" (ngSubmit)="onSubmit()">
+    <div class="form-container mat-elevation-z8" style="background-color: #457b9d;">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'Email' | translate }}</mat-label>
+        <input matInput formControlName="email" placeholder="Email" />
+        <mat-error *ngIf="mentorForm.get('email').hasError('required')">
+          {{ 'Email is required' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-label style="color: white;">{{ 'Civility' | translate }}</mat-label>
+      <mat-radio-group formControlName="civility">
+        <mat-radio-button value="MR">MR</mat-radio-button>
+        <mat-radio-button value="MRS">MRS</mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="mentorForm.get('civility').hasError('required')">
+        {{ 'Civility is required' | translate }}
+      </mat-error>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'First Name' | translate }}</mat-label>
+        <input matInput formControlName="first_name" placeholder="First Name" />
+        <mat-error *ngIf="mentorForm.get('first_name').hasError('required')">
+          {{ 'First Name is required' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'Last Name' | translate }}</mat-label>
+        <input matInput formControlName="last_name" placeholder="Last Name" />
+        <mat-error *ngIf="mentorForm.get('last_name').hasError('required')">
+          {{ 'Last Name is required' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <div formGroupName="company">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'Company Name' | translate }}</mat-label>
+          <input matInput formControlName="name" placeholder="Company Name" />
+          <mat-error *ngIf="mentorForm.get('company.name').hasError('required')">
+            {{ 'Company Name is required' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'User Type' | translate }}</mat-label>
+          <input matInput formControlName="user_type" placeholder="User Type" />
+          <mat-error *ngIf="mentorForm.get('company.user_type').hasError('required')">
+            {{ 'User Type is required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'User Status' | translate }}</mat-label>
+        <mat-select formControlName="user_status" placeholder="User Status">
+          <mat-option value="active">Active</mat-option>
+          <mat-option value="pending">Pending</mat-option>
+        </mat-select>
+        <mat-error *ngIf="mentorForm.get('user_status').hasError('required')">
+          {{ 'User Status is required' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'Count Document' | translate }}</mat-label>
+        <input matInput formControlName="count_document" placeholder="Count Document" />
+        <mat-error *ngIf="mentorForm.get('count_document').hasError('required')">
+          {{ 'Count Document is required' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <button *ngIf="isEditMode === true" style="background-color: #a8dadc;" mat-raised-button type="submit">
+        {{ 'Save Changes' | translate }}
+      </button>
+      <button *ngIf="isEditMode === false" style="background-color: #a8dadc;" mat-raised-button type="submit">
+        {{ 'Submit' | translate }}
+      </button>
+      <button color="basic" mat-raised-button mat-dialog-close>{{ 'Cancel' | translate }}</button>
+    </div>
+  </form>
+</mat-dialog-content>

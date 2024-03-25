@@ -1,0 +1,12 @@
+<mat-card class="mentor-card" (click)="goToDetailMentor(mentorData._id)">
+  <mat-card-header class="header">
+    <mat-card-title class="title">
+      {{ mentorData.civility }} {{ mentorData.last_name }} {{mentorData.first_name }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <div class="image-container">
+      <img mat-card-image src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="Dummy Image">
+    </div>
+  </mat-card-content>
+</mat-card>

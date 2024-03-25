@@ -1,0 +1,24 @@
+<div class="container">
+  <mat-card class="user-card">
+    <mat-card-header class="header">
+      <mat-card-title class="title">
+        {{ selectedMentor.civility }} {{ selectedMentor.last_name }} {{selectedMentor.first_name }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="content">
+      <div class="image-container">
+        <img mat-card-image src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="Dummy Image">
+      </div>
+      <div>
+        <p><b>Email:</b> {{ selectedMentor.email }}</p>
+        <p><b>User Status:</b> {{ selectedMentor.user_status }}</p>
+        <p><b>User Type:</b> {{ selectedMentor.company.user_type }}</p>
+        <p><b>Count Document:</b> {{ selectedMentor.count_document }}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <button mat-raised-button color="primary" (click)="goToEditMentor()">Edit</button>
+      <button mat-raised-button color="primary" (click)="goBack()">Back</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

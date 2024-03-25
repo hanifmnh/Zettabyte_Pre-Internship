@@ -1,0 +1,23 @@
+{
+  "EDIT DATA MENTOR": "EDIT DATA MENTOR",
+  "ADD NEW MENTOR": "ADD NEW MENTOR",
+  "Email": "Email",
+  "Civility": "Civility",
+  "First Name": "First Name",
+  "Last Name": "Last Name",
+  "Company Name": "Company Name",
+  "User Type": "User Type",
+  "User Status": "User Status",
+  "Count Document": "Count Document",
+  "Email is required": "Email is required",
+  "Civility is required": "Civility is required",
+  "First Name is required": "First Name is required",
+  "Last Name is required": "Last Name is required",
+  "Company Name is required": "Company Name is required",
+  "User Type is required": "User Type is required",
+  "User Status is required": "User Status is required",
+  "Count Document is required": "Count Document is required",
+  "Save Changes": "Save Changes",
+  "Submit": "Submit",
+  "Cancel": "Cancel"
+}

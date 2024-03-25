@@ -1,0 +1,23 @@
+{
+  "EDIT DATA MENTOR": "MODIFIER LES DONNÉES DU MENTOR",
+  "ADD NEW MENTOR": "AJOUTER UN NOUVEAU MENTOR",
+  "Email": "Email",
+  "Civility": "Civilité",
+  "First Name": "Prénom",
+  "Last Name": "Nom de famille",
+  "Company Name": "Nom de l'entreprise",
+  "User Type": "Type d'utilisateur",
+  "User Status": "Statut de l'utilisateur",
+  "Count Document": "Nombre de documents",
+  "Email is required": "L'email est requis",
+  "Civility is required": "La civilité est requise",
+  "First Name is required": "Le prénom est requis",
+  "Last Name is required": "Le nom de famille est requis",
+  "Company Name is required": "Le nom de l'entreprise est requis",
+  "User Type is required": "Le type d'utilisateur est requis",
+  "User Status is required": "Le statut de l'utilisateur est requis",
+  "Count Document is required": "Le nombre de documents est requis",
+  "Save Changes": "Enregistrer les modifications",
+  "Submit": "Soumettre",
+  "Cancel": "Annuler"
+}

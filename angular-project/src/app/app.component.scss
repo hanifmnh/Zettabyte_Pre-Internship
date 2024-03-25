@@ -1,0 +1,18 @@
+.sidenav-container {
+  height: 100%;
+  min-height: 100vh;
+}
+
+mat-sidenav {
+  width: 15vw;
+}
+
+.mat-nav-list a {
+  color: #fff;
+}
+
+.main-content {
+  margin-left: 8vw;
+  margin-right: 8vw;
+  padding-bottom: 5vw;
+}

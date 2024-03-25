@@ -1,0 +1,18 @@
+<button mat-raised-button style="background-color: #457b9d; color: white; margin: 1vw 0; width: 100%;"
+  (click)="openAddMentor()">
+  Add New Mentor
+</button>
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+  <mat-tab label="Mentor Cards">
+    <div class="card-content">
+      <div *ngFor="let mentor of mentors">
+        <app-mentor-card [mentorData]="mentor"></app-mentor-card>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Mentor Table">
+    <div class="table-content">
+      <app-mentor-table></app-mentor-table>
+    </div>
+  </mat-tab>
+</mat-tab-group>
